@@ -68,7 +68,7 @@ public class Connector extends AbstractAggregateRoot<Connector> {
         // JPA before event publishing.
         registerEvent(new ConnectorAddedEvent(this.id,
                 this.evse.getId(),
-                this.evse.getEvseId().getText(),
+                this.evse.getEvseId() == null ? "" : this.evse.getEvseId().getText(),
                 this.standard,
                 this.powerLevel,
                 this.voltage));
