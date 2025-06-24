@@ -34,7 +34,7 @@ public class ConnectorApplicationService {
     @Transactional
     public Connector addConnectorToEVSE(String evseIdText, String standard, Double powerLevel, Double voltage) {
         EVSE evse = evseRepository.findByEvseIdText(evseIdText)
-                .orElseThrow(() -> new ResourceNotFoundException("EVSE not found with EVSE ID: " + evseIdText));
+                .orElseThrow(() -> new ResourceNotFoundException("EVSE not found with EVSE ID(CI Trigger): " + evseIdText));
 
         Connector connector = new Connector(standard, powerLevel, voltage, evse);
         evse.addConnector(connector); // Add connector to EVSE's collection (managed by cascade)
