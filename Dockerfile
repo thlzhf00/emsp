@@ -12,6 +12,7 @@ COPY .mvn .mvn
 COPY pom.xml .
 
 # Download dependencies (to leverage Docker layer caching)
+RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline -B
 
 # Copy the rest of the application source code
