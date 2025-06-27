@@ -71,7 +71,7 @@ public class Location extends AbstractAggregateRoot<Location> {
         this.address = address;
         this.coordinates = coordinates;
         this.businessHours = businessHours;
-        // lastUpdated will be set by @EnableJpaAuditing on persist
+        this.lastUpdated = LocalDateTime.now();
 
         // Register the event. This will be published after transaction commit.
         registerEvent(new LocationCreatedEvent(this.id, this.name, this.address));
@@ -90,7 +90,7 @@ public class Location extends AbstractAggregateRoot<Location> {
         this.address = address;
         this.coordinates = coordinates;
         this.businessHours = businessHours;
-        // lastUpdated will be updated by @EnableJpaAuditing
+        this.lastUpdated = LocalDateTime.now();
 
         // Register the event. This will be published after transaction commit.
         registerEvent(new LocationUpdatedEvent(this.id, this.name, this.address));
