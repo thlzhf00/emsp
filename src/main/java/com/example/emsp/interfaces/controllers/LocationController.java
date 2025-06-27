@@ -85,7 +85,7 @@ public class LocationController {
             @RequestParam(defaultValue = "10") int size) {
 
         // If lastUpdated is not provided, default to a very old date to fetch all.
-        // In a real system, you might want to require this parameter or apply a different default logic.
+        // In a real system, we might want to require this parameter or apply a different default logic.
         LocalDateTime filterTimestamp = (lastUpdated != null) ? lastUpdated : LocalDateTime.MIN;
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("lastUpdated").ascending());
