@@ -66,7 +66,7 @@ public class EVSE extends AbstractAggregateRoot<EVSE> {
         this.evseId = evseId;
         this.location = location;
         this.status = EVSEStatus.AVAILABLE; // Initial state is AVAILABLE
-        // lastUpdated will be set by @EnableJpaAuditing on persist
+        this.lastUpdated = LocalDateTime.now();
 
         // Register the event. This will be published after transaction commit.
         // Note: this.id might be null here if not yet persisted, but will be populated by JPA before event publishing.
@@ -87,7 +87,7 @@ public class EVSE extends AbstractAggregateRoot<EVSE> {
         }
         EVSEStatus oldStatus = this.status;
         this.status = newStatus;
-        // lastUpdated will be updated by @EnableJpaAuditing on update
+        this.lastUpdated = LocalDateTime.now();
 
         // Register the event. This will be published after transaction commit.
         registerEvent(new EVSEStatusChangedEvent(this.id, this.evseId.getText(), oldStatus, newStatus));
