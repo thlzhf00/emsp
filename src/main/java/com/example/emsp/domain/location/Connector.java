@@ -61,7 +61,7 @@ public class Connector extends AbstractAggregateRoot<Connector> {
         this.powerLevel = powerLevel;
         this.voltage = voltage;
         this.evse = evse;
-        // lastUpdated will be set by @EnableJpaAuditing on persist
+        this.lastUpdated = LocalDateTime.now();
 
         // Register the event. This will be published after transaction commit.
         // Note: this.id might be null here if not yet persisted, but will be populated by
